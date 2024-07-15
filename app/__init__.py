@@ -1,3 +1,6 @@
+# sets up the flask app and configures the database. 
+# it initializes the app and database, creates the necessary tables, and registers the main routes blueprint.
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 

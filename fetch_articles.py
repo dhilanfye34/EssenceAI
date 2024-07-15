@@ -1,3 +1,6 @@
+# fetches articles from specified rss feeds, summarizes them using openai, and then stores them in the database. 
+# it does the heavy lifting of getting and prepping the article data.
+
 import os
 import feedparser
 import openai

@@ -1,3 +1,6 @@
+#sets up the routes for our web app. 
+# it has the logic for handling requests to the main page and fetching articles from the database to display them.
+
 from flask import Blueprint, jsonify, render_template
 from app.models import db, Article
 

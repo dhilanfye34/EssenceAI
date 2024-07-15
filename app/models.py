@@ -1,3 +1,6 @@
+#defines the database model for the articles. 
+# it's like a blueprint for what info we store about each article, like the title, content, summary, and published date.
+
 from datetime import datetime
 from app import db
 
