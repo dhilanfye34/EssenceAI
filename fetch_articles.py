@@ -52,7 +52,9 @@ def summarize_article(content):
         response = client.chat.completions.create(model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": f"Summarize the following article: {content}"}
+            {"role": "user", "content": f"Summarize the following article in a detailed and lengthy manner, 
+             but ensure it is easily understandable for someone without a medical background. 
+             Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension.: {content}"}
         ],
         max_tokens=150,
         n=1,
