@@ -49,18 +49,22 @@ def fetch_articles():
 
 def summarize_article(content):
     try:
-        response = client.chat.completions.create(model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": f"Summarize the following article in a detailed and lengthy manner, 
-             but ensure it is easily understandable for someone without a medical background. 
-             Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension.: {content}"}
-        ],
-        max_tokens=150,
-        n=1,
-        stop=None,
-        temperature=0.7)
-        return response.choices[0].message.content.strip()
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": (
+                    f"Summarize the following article in a detailed and lengthy manner, "
+                    f"but ensure it is easily understandable for someone without a medical background. "
+                    f"Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension: {content}"
+                )}
+            ],
+            max_tokens=150,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        return response.choices[0].message['content'].strip()
     except Exception as e:
         print(f"Error summarizing article: {e}")  # Debugging line
         return "Summary not available"
@@ -69,4 +73,3 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         fetch_articles()
-
