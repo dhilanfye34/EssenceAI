@@ -1,0 +1,50 @@
+<! -- this is the html template for our main page. 
+it structures how the articles will look when displayed on the webpage, 
+with placeholders for the article title, summary, and published date. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Summaries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .article {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .article h2 {
+            margin-top: 0;
+        }
+        .article p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Article Summaries</h1>
+        {% for article in articles %}
+        <div class="article">
+            <h2>{{ article.title }}</h2>
+            <p><strong>Published on:</strong> {{ article.published_date.strftime('%Y-%m-%d') }}</p>
+            <p>{{ article.summary }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
