@@ -1,55 +1,49 @@
-# fetches articles from specified rss feeds, summarizes them using openai, and then stores them in the database. 
-# it does the heavy lifting of getting and prepping the article data.
-
 import os
 import feedparser
-from openai import OpenAI
-
-client = OpenAI(api_key='sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm')
+import openai
 from datetime import datetime
 from app import create_app, db
 from app.models import Article
 
-# Set your OpenAI API key directly (not recommended for production)
+openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
 
 def fetch_articles():
     feeds = [
-        'https://pubmed.ncbi.nlm.nih.gov/rss/search/1lQlR_8mqnmeUSTELIMlEQtMXMlcA8QwShAsylr6loJanRIQ76/?limit=15&utm_campaign=pubmed-2&fc=20240715111953',  # Your provided RSS feed link
+        'https://pubmed.ncbi.nlm.nih.gov/rss/search/1lQlR_8mqnmeUSTELIMlEQtMXMlcA8QwShAsylr6loJanRIQ76/?limit=15&utm_campaign=pubmed-2&fc=20240715111953',
     ]
 
     for feed in feeds:
-        print(f"Fetching from feed: {feed}")  # Debugging line
+        print(f"Fetching from feed: {feed}")
         parsed_feed = feedparser.parse(feed)
         if parsed_feed.entries:
             for entry in parsed_feed.entries:
                 try:
-                    print(f"Fetched article: {entry.title}")  # Debugging line
-                    # Summarize the article content
+                    title = entry.title[:200]  # Truncate title to 200 characters
+                    print(f"Fetched article: {title}")
                     summary = summarize_article(entry.description)
-                    print(f"Summary: {summary}")  # Debugging line
+                    print(f"Summary: {summary}")
 
-                    # Add article to the database
                     article = Article(
-                        title=entry.title,
+                        title=title,
                         content=entry.description,
                         summary=summary,
                         published_date=datetime(*entry.published_parsed[:6])
                     )
-                    print(f"Adding article to DB: {article}")  # Debugging line
+                    print(f"Adding article to DB: {article}")
                     db.session.add(article)
                 except Exception as e:
-                    print(f"Error processing article: {e}")  # Debugging line
+                    print(f"Error processing article: {e}")
         else:
-            print("No entries found in the feed.")  # Debugging line
+            print("No entries found in the feed.")
     try:
         db.session.commit()
-        print("Articles fetched and stored successfully.")  # Debugging line
+        print("Articles fetched and stored successfully.")
     except Exception as e:
-        print(f"Error committing to DB: {e}")  # Debugging line
+        print(f"Error committing to DB: {e}")
 
 def summarize_article(content):
     try:
-        response = client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -64,9 +58,9 @@ def summarize_article(content):
             stop=None,
             temperature=0.7,
         )
-        return response.choices[0].message['content'].strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
-        print(f"Error summarizing article: {e}")  # Debugging line
+        print(f"Error summarizing article: {e}")
         return "Summary not available"
 
 if __name__ == '__main__':
