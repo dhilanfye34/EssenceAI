@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Summaries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Article Summaries</h1>
+    {% for article in articles %}
+        <div class="article">
+            <h2>{{ article.title }}</h2>
+            <p><strong>Summary:</strong> {{ article.summary }}</p>
+            <p><strong>Published Date:</strong> {{ article.published_date }}</p>
+            <p><strong>Content:</strong> {{ article.content }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
