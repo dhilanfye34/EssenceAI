@@ -10,7 +10,7 @@ openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
 
 # Cancer types and their corresponding RSS feeds
 feeds = {
-    'Breast Cancer': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1faJNdFX7yLhGwr_ezd1l6lNyfmHcE04gUxNB0PX42iBpLEk3Q/?limit=15&utm_campaign=pubmed-2&fc=20240806135356',
+    'Breast Cancer': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1lIZdG7__acNiPnxLwe9dievbtT2ykZDpzmhH1M37avlc_J9bK/?limit=15&utm_campaign=pubmed-2&fc=20240809224835',
     'Lung Cancer': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1LU7YBGfC-yGn9EL0yPGew-Gfn5lHWl42C5hi-GsswhqdckAAq/?limit=15&utm_campaign=pubmed-2&fc=20240806135434',
     'Prostate Cancer': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1TQbL92JdzY1vfZj3Ovsk-ka-tW8-AczOWGhdGMm0nLqb9Lkb5/?limit=15&utm_campaign=pubmed-2&fc=20240806135459',
     'Colorectal Cancer': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1fqLZM0XwJj9UKgNserBqe5YfFZSGWgcHJpsp5MCwqvqdIGM9d/?limit=15&utm_campaign=pubmed-2&fc=20240806135529',
@@ -34,36 +34,43 @@ feeds = {
 }
 
 def fetch_articles():
-    app = create_app()
-    with app.app_context():
-        for cancer_type, feed in feeds.items():
-            print(f"Fetching from feed: {feed}")
-            parsed_feed = feedparser.parse(feed)
-            if parsed_feed.entries:
-                for entry in parsed_feed.entries:
-                    try:
-                        print(f"Fetched article: {entry.title}")
-                        summary = summarize_article(entry.description)
-                        print(f"Summary: {summary}")
+    for cancer_type, feed in feeds.items():
+        print(f"Fetching from feed: {feed}")
+        parsed_feed = feedparser.parse(feed)
+        if parsed_feed.entries:
+            # Fetch only the first article for testing
+            entry = parsed_feed.entries[0]
+            try:
+                # Check if the article already exists in the database
+                existing_article = Article.query.filter_by(title=entry.title, published_date=datetime(*entry.published_parsed[:6])).first()
+                
+                if existing_article is None:
+                    print(f"Fetched article: {entry.title}")
+                    summary = summarize_article(entry.description)
+                    print(f"Summary: {summary}")
 
-                        # Add article to the database
-                        article = Article(
-                            title=entry.title,
-                            content=entry.description,
-                            summary=summary,
-                            published_date=datetime(*entry.published_parsed[:6]),
-                            cancer_type=cancer_type
-                        )
-                        db.session.add(article)
-                    except Exception as e:
-                        print(f"Error processing article: {e}")
-            else:
-                print("No entries found in the feed.")
-        try:
-            db.session.commit()
-            print("Articles fetched and stored successfully.")
-        except Exception as e:
-            print(f"Error committing to DB: {e}")
+                    # Add article to the database
+                    article = Article(
+                        title=entry.title,
+                        content=entry.description,
+                        summary=summary,
+                        published_date=datetime(*entry.published_parsed[:6]),
+                        cancer_type=cancer_type
+                    )
+                    db.session.add(article)
+                else:
+                    print(f"Article already exists in the database: {entry.title}")
+
+            except Exception as e:
+                print(f"Error processing article: {e}")
+        else:
+            print("No entries found in the feed.")
+    try:
+        db.session.commit()
+        print("Articles fetched and stored successfully.")
+    except Exception as e:
+        print(f"Error committing to DB: {e}")
+
 
 def summarize_article(content):
     try:

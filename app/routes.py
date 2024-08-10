@@ -15,5 +15,5 @@ def home():
 
 @app.route('/cancer/<cancer_type>')
 def cancer_articles(cancer_type):
-    articles = Article.query.filter_by(cancer_type=cancer_type).all()
+    articles = Article.query.filter_by(cancer_type=cancer_type).distinct(Article.title).all()
     return render_template('cancer.html', cancer_type=cancer_type, articles=articles)

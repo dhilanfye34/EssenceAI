@@ -1,6 +1,7 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
-from app import create_app, fetch_articles
+from app import create_app
+from fetch_articles import fetch_articles
 import threading
 
 app = create_app()
