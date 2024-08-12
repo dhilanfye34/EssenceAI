@@ -1,26 +1,18 @@
-from apscheduler.schedulers.background import BackgroundScheduler
-from flask import Flask
-from app import create_app, db  # Ensure `db` is imported
-from fetch_articles import fetch_articles 
+from app import create_app, db
+from app.models import Article  # Assuming you have an Article model
+from flask_migrate import upgrade
+import os
 
 app = create_app()
 
-if __name__ == '__main__':
-    # Initialize the scheduler
-    scheduler = BackgroundScheduler()
-    # Add the job to fetch articles every hour
-    scheduler.add_job(fetch_articles, 'interval', hours=1)
-    scheduler.start()
+with app.app_context():
+    # Apply database migrations to ensure the schema is up to date
+    upgrade()
 
-    # Fetch articles initially
-    with app.app_context():
-        db.create_all()  # This will create tables if they don't exist
-        fetch_articles()
+    # Trigger the RSS feed processing function
+    # This assumes you have a function `fetch_articles` that processes the feeds and populates the database
+    from fetch_articles import fetch_articles
+    fetch_articles()  # Run your function to fetch and summarize articles
 
-    try:
-        # Start the Flask server
-        app.run(debug=True)
-    except (KeyboardInterrupt, SystemExit):
-        pass
-    finally:
-        scheduler.shutdown()
+if __name__ == "__main__":
+    app.run()

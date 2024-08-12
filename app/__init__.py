@@ -1,18 +1,21 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-db = SQLAlchemy()
+from flask.cli import AppGroup
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://healthcare_user:pens@localhost/healthcare_db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    db.init_app(app)
-    migrate = Migrate(app, db)
+    # Your app initialization code here
 
-    with app.app_context():
-        from . import routes, models
+    # Create a custom command group
+    article_cli = AppGroup('articles')
+
+    # Add the fetch_articles command
+    @article_cli.command('fetch')
+    def fetch_articles_command():
+        from app import fetch_articles  # Import your fetch function
+        fetch_articles()
+
+    # Register the command with the Flask CLI
+    app.cli.add_command(article_cli)
 
     return app
