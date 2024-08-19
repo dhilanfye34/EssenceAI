@@ -1,5 +1,5 @@
 from flask import Flask
-from app.config import Config
+from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -7,7 +7,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
-
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -15,7 +14,8 @@ def create_app():
     migrate.init_app(app, db)
 
     with app.app_context():
-        from . import routes  # Register routes
-        db.create_all()  # Ensure tables are created
+        from .routes import main as main_blueprint
+        app.register_blueprint(main_blueprint)
+        db.create_all()
 
     return app

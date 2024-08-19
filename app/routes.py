@@ -1,15 +1,17 @@
-from flask import render_template
-from app import db
-from app.models import Article
-from app import create_app
+from flask import Blueprint, render_template
+from .models import Article
 
-app = create_app()
+# Define the blueprint
+main = Blueprint('main', __name__)
 
-@app.route('/')
+# Route for the homepage
+@main.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/cancer/<cancer_type>')
-def cancer_articles(cancer_type):
-    articles = Article.query.filter_by(cancer_type=cancer_type).distinct(Article.title).all()
-    return render_template('articles.html', articles=articles)
+# Route for displaying cancer-related articles
+@main.route('/cancer/<cancer_type>')
+def cancer(cancer_type):
+    # Query the database for articles of the specified cancer type
+    articles = Article.query.filter_by(cancer_type=cancer_type).all()
+    return render_template('cancer.html', articles=articles, cancer_type=cancer_type)
