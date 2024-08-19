@@ -1,6 +1,6 @@
 from app import create_app
 from app.scheduler import start_scheduler
-from fetch_articles import fetch_articles
+from fetch_articles import fetch_articles  # Importing your fetch_articles function
 
 app = create_app()
 

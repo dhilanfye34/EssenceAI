@@ -13,7 +13,7 @@ def create_app():
     migrate.init_app(app, db)
 
     with app.app_context():
-        from . import routes
-        db.create_all()
+        from . import routes  # Register routes
+        db.create_all()  # Ensure tables are created
 
     return app
