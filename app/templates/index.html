@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Cancer Articles</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Articles Summary</title>
 </head>
 <body>
     <h1>Welcome to the Cancer Articles Summary</h1>
-    <h2>Select a Cancer Type</h2>
+    <p>Select a Cancer Type:</p>
     <ul>
         {% for cancer_type in cancer_types %}
-        <li><a href="{{ url_for('cancer_articles', cancer_type=cancer_type) }}">{{ cancer_type }}</a></li>
+            <li><a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a></li>
         {% endfor %}
     </ul>
 </body>

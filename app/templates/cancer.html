@@ -1,21 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ cancer_type }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cancer_type }} Articles</title>
 </head>
 <body>
-    <h1>{{ cancer_type }}</h1>
+    <h1>{{ cancer_type }} Articles</h1>
+    <a href="{{ url_for('main.index') }}">Back to Home</a>
     <ul>
         {% for article in articles %}
-        <li>
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.summary }}</p>
-            <p><small>Published on: {{ article.published_date }}</small></p>
-        </li>
+            <li>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.summary }}</p>
+                <p><em>Published on: {{ article.published_date }}</em></p>
+            </li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('home') }}">Back to Home</a>
 </body>
 </html>
