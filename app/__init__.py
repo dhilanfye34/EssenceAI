@@ -13,6 +13,9 @@ def create_app():
     with app.app_context():
         db.create_all()
 
+        from fetch_articles import fetch_articles  # Import the fetch_articles function
+        fetch_articles()  # Automatically fetch articles after the app starts
+
     from app.routes import main  # Import the Blueprint
     app.register_blueprint(main)
 
