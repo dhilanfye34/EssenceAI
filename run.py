@@ -8,4 +8,4 @@ if __name__ == "__main__":
     with app.app_context():
         fetch_articles()  # Manually trigger fetching of articles before starting the app
         start_scheduler()  # Start the scheduler for continuous fetching
-    app.run(debug=True)
+    app.run(debug=False)

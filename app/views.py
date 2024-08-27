@@ -1,8 +1,8 @@
 from flask import render_template
-from app import app
 from app.models import Article
+import app
 
-@app.route('/')
-def home():
-    articles = Article.query.all()
-    return render_template('index.html', articles=articles)
+@app.route('/cancer_type/<type>')
+def show_articles(type):
+    articles = Article.query.filter_by(cancer_type=type).all()
+    return render_template('articles.html', articles=articles, cancer_type=type)
