@@ -2,7 +2,6 @@ import os
 import feedparser
 import openai
 from datetime import datetime
-from app.__init__ import create_app, db
 from app.models import Article
 
 # Set your OpenAI API key
@@ -33,7 +32,7 @@ feeds = {
     'Soft Tissue Sarcoma': 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1NKSH3UhXTzQteDpfyzgD1YQdSQt8dOi1qvuYWUuPO0I39LQND/?limit=15&utm_campaign=pubmed-2&fc=20240806140544',
 }
 
-def fetch_articles():
+def fetch_articles(db):
     for cancer_type, feed in feeds.items():
         print(f"Fetching from feed: {feed}")
         parsed_feed = feedparser.parse(feed)
