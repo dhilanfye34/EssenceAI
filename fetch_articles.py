@@ -2,7 +2,7 @@ import os
 import feedparser
 import openai
 from datetime import datetime
-from app import create_app, db
+from app.__init__ import create_app, db
 from app.models import Article
 
 # Set your OpenAI API key

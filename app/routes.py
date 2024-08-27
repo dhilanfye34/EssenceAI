@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from fetch_articles import feeds  # Import the feeds dictionary
-from .models import Article
+from app.models import Article
 
 main = Blueprint('main', __name__)
 
