@@ -1,20 +1,19 @@
 from flask import Flask
-from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
-from app.routes import main  # Import the Blueprint
+from app.config import Config
 
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)  # Load the configuration from the Config class
+    app.config.from_object(Config)
 
     db.init_app(app)
 
     with app.app_context():
-        db.create_all()  # This ensures tables are created (for local development)
+        db.create_all()
 
-    # Register the Blueprint
+    from app.routes import main  # Import the Blueprint
     app.register_blueprint(main)
 
     return app
