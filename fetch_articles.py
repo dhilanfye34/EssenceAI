@@ -1,7 +1,7 @@
 import os
 import feedparser
 import openai
-from flask import current_app
+from app import db
 from datetime import datetime
 from app.models import Article
 
@@ -34,7 +34,6 @@ feeds = {
 }
 
 def fetch_articles():
-    db = current_app.extensions['sqlalchemy'].db
     for cancer_type, feed in feeds.items():
         print(f"Fetching from feed: {feed}")
         parsed_feed = feedparser.parse(feed)
