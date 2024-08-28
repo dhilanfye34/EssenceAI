@@ -11,3 +11,11 @@
     font-family: 'Brush Script MT', cursive;
     font-size: 21px;
 }
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    margin: 40px 0;
+}
