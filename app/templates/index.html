@@ -5,9 +5,31 @@
 {% block content %}
 <h1>Welcome to the Cancer Articles Summary</h1>
 <p>Select a Cancer Type:</p>
-<ul>
     {% for cancer_type in cancer_types %}
-        <li><a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a></li>
-    {% endfor %}
-</ul>
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <p>Summer Collection New Modern Designs</p>
+
+        <div class="pro-container">
+            {% for cancer_type in cancer_types %}
+                <div class="pro">
+                    <img src="{{ url_for('static', filename='Images/Products/f1.jpg') }}" alt="">
+                    <div class="des">
+                        <span>adidas</span>
+                        <h5>Cartoon Astronaut T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star "></i>
+                            <i class="fas fa-star "></i>
+                            <i class="fas fa-star "></i>
+                            <i class="fas fa-star "></i>
+                            <i class="fas fa-star "></i>
+                        </div>
+                        <h4>$78</h4>
+                    </div>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a>
+            </div>
+            {% endfor %}
+</section>
+
 {% endblock %}
