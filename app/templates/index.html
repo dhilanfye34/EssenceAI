@@ -10,6 +10,25 @@
     <title>Cancer Articles Summary</title>
 </head>
 <body>
+
+    <div id="navbar-container"></div>
+
+      <p> Here we will have a preliminar view of the project I am currently working on</p>
+      <ol>
+        <li> ESSENCE AI research website (company)</li>
+        <li> Game capable of making steady 3k per month</li>
+        <li> Web Development worth of internships</li>
+        <li> Doc app</li>
+        <li> Fun (section with ideas an possible future projects</li>
+    </ol>
+      <script>
+          // Fetch and load the navbar into the navbar-container
+          fetch('nav_bar.html')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-container').innerHTML = data;
+              });
+    </script>
     <h1>Welcome to the Cancer Articles Summary</h1>
     <p>Select a Cancer Type:</p>
     <ul>
