@@ -47,7 +47,7 @@ button.normal{
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url('../Images/Banners/b14.png');
+    background-image: url('Images/Banners/b14.png');
     background-repeat: no-repeat;
     background-position: 20% 30%;
     background-color: #041e42;
