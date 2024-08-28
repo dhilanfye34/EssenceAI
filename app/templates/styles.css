@@ -1,0 +1,13 @@
+.ima{
+    width: 500px;
+    height: 450px;
+}
+
+.container{
+    text-align: center;
+}
+.record{
+    text-align: center;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 21px;
+}
