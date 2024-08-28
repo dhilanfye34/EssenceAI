@@ -20,3 +20,7 @@ def cancer(cancer_type):
 @main.route('/navbar')
 def navbar():
     return render_template('nav_bar.html')
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
