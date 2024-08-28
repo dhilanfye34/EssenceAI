@@ -23,7 +23,7 @@
     </ol>
       <script>
           // Fetch and load the navbar into the navbar-container
-          fetch('nav_bar.html')
+          fetch('/templates/nav_bar.html')
               .then(response => response.text())
               .then(data => {
                   document.getElementById('navbar-container').innerHTML = data;
