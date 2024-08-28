@@ -24,11 +24,11 @@
     </ol>
       <script>
           // Fetch and load the navbar into the navbar-container
-          fetch('/templates/nav_bar.html')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('navbar-container').innerHTML = data;
-              });
+          fetch('/navbar')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
     </script>
     <h1>Welcome to the Cancer Articles Summary</h1>
     <p>Select a Cancer Type:</p>
