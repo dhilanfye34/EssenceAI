@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
@@ -67,11 +69,11 @@
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
-                <img src="Images/pay/app.jpg" alt="" />
-                <img src="Images/pay/play.jpg" alt="" />
+                <img src="{{ url_for('static', filename='Images/pay/app.jpg') }}" alt="App Store"/>
+                <img src="{{ url_for('static', filename='Images/pay/play.jpg') }}" alt="Google Play"/>
             </div>
             <p>Secure Payment Gateways</p>
-            <img src="Images/pay/pay.png" alt="" />
+            <img src="{{ url_for('static', filename='Images/pay/pay.png') }}" alt="Payment Gateways"/>
         </div>
     </footer>
 </body>
