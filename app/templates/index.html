@@ -9,7 +9,7 @@
         <div class="pro-container">
             {% for cancer_type in cancer_types %}
                 <div class="pro">
-                    <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '_')|lower ~ '.jpg') }}" alt="{{ cancer_type }}">
+                    <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
                     <div class="des">
                         <h5>{{cancer_type}}</h5>
                     </div>
