@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <link href="styles.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://sianjave.s3.us-east-2.amazonaws.com/Sianjave+Logo.png">
-    <title>Cancer Articles Summary</title>
-</head>
-<body>
-    <div id="navbar-container"></div>
-      <script>
-          // Fetch and load the navbar into the navbar-container
-          fetch('/navbar')
-                .then(response => response.text())
-                .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
-    </script>
-    <h1>Welcome to the Cancer Articles Summary</h1>
-    <p>Select a Cancer Type:</p>
-    <ul>
-        {% for cancer_type in cancer_types %}
-            <li><a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a></li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Cancer Articles Summary{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Cancer Articles Summary</h1>
+<p>Select a Cancer Type:</p>
+<ul>
+    {% for cancer_type in cancer_types %}
+        <li><a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
