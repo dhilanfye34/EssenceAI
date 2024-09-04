@@ -11,15 +11,14 @@
                 <!-- Content goes here -->
             
             {% for cancer_type in cancer_types %}
-                <a  href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">
-                    <div class="pro">
+                <div class="pro">
+                    <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">
                         <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
                         <div class="des">
-                        <h5>{{cancer_type}}</h5>
-                    </div>
-                    <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a>
-                    </div>
-                </a>
+                            <h5>{{ cancer_type }}</h5>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
             
         </div>
