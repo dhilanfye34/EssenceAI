@@ -15,8 +15,9 @@
                     <div class="pro">
                         <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
                         <div class="des">
-                            <h5>{{cancer_type}}</h5>
-                        </div>
+                        <h5>{{cancer_type}}</h5>
+                    </div>
+                    <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a>
                     </div>
                 </a>
             {% endfor %}
