@@ -7,15 +7,22 @@
 <p>Select a Cancer Type:</p>
 <section id="product1" class="section-p1">
         <div class="pro-container">
+            
+                <!-- Content goes here -->
+            
             {% for cancer_type in cancer_types %}
-                <div class="pro">
-                    <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
-                    <div class="des">
+                <a  href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">
+                    <div class="pro">
+                        <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
+                        <div class="des">
                         <h5>{{cancer_type}}</h5>
                     </div>
                     <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">{{ cancer_type }}</a>
-                </div>
+                    </div>
+                </a>
             {% endfor %}
+            
+        </div>
 </section>
 
 {% endblock %}
