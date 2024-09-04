@@ -121,8 +121,10 @@ body {
 }
 
 
-#product1 .pro img{
+#product1 .pro img {
     width: 100%;
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
     border-radius: 20px;
 }
 
