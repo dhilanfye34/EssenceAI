@@ -7,8 +7,7 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def index():
     # Extract cancer types from the feeds dictionary keys
-    cancer_types = list(feeds.keys())
-    return render_template('index.html', cancer_types=cancer_types)
+    return render_template('index.html')
 
 @main.route('/cancer/<cancer_type>')
 def cancer(cancer_type):
@@ -27,4 +26,6 @@ def about():
 
 @main.route('/cancerList')
 def cancerList():
-    return render_template('cancerList.html')
+    cancer_types = list(feeds.keys())
+    return render_template('cancerList.html', cancer_types=cancer_types)
+    
