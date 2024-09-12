@@ -24,3 +24,7 @@ def navbar():
 @main.route('/about')
 def about():
     return render_template('about.html')
+
+@main.route('/cancerList')
+def about():
+    return render_template('cancerList.html')
