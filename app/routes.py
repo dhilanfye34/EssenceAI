@@ -26,5 +26,5 @@ def about():
     return render_template('about.html')
 
 @main.route('/cancerList')
-def about():
+def cancerList():
     return render_template('cancerList.html')
