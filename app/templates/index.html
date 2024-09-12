@@ -1,27 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Cancer Articles Summary{% endblock %}
+{% block title %}EssenceAI{% endblock %}
 
 {% block content %}
 <h1>Welcome to the Cancer Articles Summary</h1>
 <p>Select a Cancer Type:</p>
 <section id="product1" class="section-p1">
-        <div class="pro-container">
-            
-                <!-- Content goes here -->
-            
-            {% for cancer_type in cancer_types %}
-                <div class="pro">
-                    <a href="{{ url_for('main.cancer', cancer_type=cancer_type) }}">
-                        <img src="{{ url_for('static', filename='Images/Cancers/' ~ cancer_type|replace(' ', '') ~ '.png') }}" alt="{{ cancer_type }}">
-                        <div class="des">
-                            <h5>{{ cancer_type }}</h5>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-            
-        </div>
+        <p>omg</p>
 </section>
 
 {% endblock %}
