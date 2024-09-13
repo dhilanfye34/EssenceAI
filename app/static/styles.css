@@ -192,7 +192,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width, minus potential scrollbar width */
+    width: calc(100vw - 17px); /* Full viewport width minus scrollbar */
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
     background-size: cover; /* Make sure the image covers the entire section */
