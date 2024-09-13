@@ -189,10 +189,11 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    height: 100vh; /* Adjust height */
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
-    background-size: cover; /* Ensure the image covers the entire container */
-    background-position: center; /* Center the image within the container */
+    background-size: contain; /* Adjust size */
+    background-position: center; /* Position the image */
     background-color: #041e42;
 }
 
