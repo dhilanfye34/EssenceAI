@@ -193,12 +193,13 @@ body {
     width: 100vw; /* Full viewport width */
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
-    background-size: cover; /* Cover the entire section */
+    background-size: cover; /* Ensure the image covers the full section */
     background-position: center; /* Center the background image */
-    background-color: #041e42;
-    margin: 0; /* Ensure no margin */
-    padding: 0; /* Ensure no padding */
-    overflow-x: hidden;
+    background-color: #041e42; /* Fallback background color */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; 
 }
 
 
