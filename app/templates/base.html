@@ -27,8 +27,10 @@
             <p>Get E-mail updates about out latest products and <span>Technologies</span></p>
         </div>
         <div class="form">
-            <input type="text" placeholder="Your email address" />
-            <button class="normal">Sign Up</button>
+            <form method="POST" action="/subscribe">
+                <input type="email" name="email" placeholder="Your email address" required />
+                <button class="normal" type="submit">Sign Up</button>
+            </form>
         </div>
     </section>
     <footer class="section-p1">
