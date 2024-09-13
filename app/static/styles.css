@@ -185,19 +185,20 @@ body {
 }*/
 
 #essence{
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: center;
-        height: 100vh; /* Full viewport height */
-        width: 100vw; /* Full viewport width */
-        background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
-        background-repeat: no-repeat;
-        background-size: cover; /* Ensure the image covers the full container */
-        background-position: center; /* Center the background image */
-        background-color: #041e42; /* Fallback background color */
-        margin: 0; /* Remove any margin */
-        padding: 0; /* Remove any padding */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
+    background-repeat: no-repeat;
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the background image */
+    background-color: #041e42;
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+    overflow-x: hidden;
 }
 
 
