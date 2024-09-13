@@ -7,3 +7,4 @@ class Config:
     # Replace "postgres://" with "postgresql://" if necessary
     SQLALCHEMY_DATABASE_URI = raw_db_uri.replace("postgres://", "postgresql://", 1) + "?sslmode=require"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.getenv('SECRET_KEY', 'BabyLokesh')
