@@ -9,6 +9,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -75,6 +76,7 @@ button.white {
 
 body {
     width: 100%;
+    overflow-x: hidden;
 }
 
 .ima{
@@ -190,16 +192,16 @@ body {
     flex-wrap: wrap;
     align-items: center;
     height: 100vh; /* Full viewport height */
-    width: 100%; /* Full width without scrollbar overflow */
+    width: 100vw; /* Full viewport width, minus potential scrollbar width */
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
-    background-size: cover; /* Ensure the image covers the full section */
-    background-position: center; /* Center the background image */
-    background-color: #041e42; /* Fallback background color */
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    background-size: cover; /* Make sure the image covers the entire section */
+    background-position: center; /* Center the image */
+    background-color: #041e42; /* Background color fallback */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and borders in the width/height */
+    overflow-x: hidden; 
 }
 
 
