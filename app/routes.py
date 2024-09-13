@@ -3,6 +3,11 @@ from fetch_articles import feeds  # Import the feeds dictionary
 from app.models import Article, Subscriber
 from . import db
 from sqlalchemy.exc import IntegrityError
+from app import celery
+from email.mime.text import MIMEText
+import smtplib
+from app.tasks import send_email_async
+
 
 
 main = Blueprint('main', __name__)
@@ -52,4 +57,16 @@ def subscribe():
             db.session.rollback()
             flash('There was an error subscribing. Please try again later.', 'danger')
 
+    return redirect(url_for('main.index'))
+
+
+@main.route('/send_emails')
+def send_emails():
+    subscribers = Subscriber.query.all()
+
+    # Send emails asynchronously
+    for subscriber in subscribers:
+        send_email_async.delay(subscriber.email)  # Send email asynchronously using Celery
+
+    flash("Emails are being sent!")
     return redirect(url_for('main.index'))
