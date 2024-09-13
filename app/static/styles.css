@@ -184,6 +184,17 @@ body {
         right: 10px;
 }*/
 
+#essence{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/ESSENCE+AI+FINAL+LOGO.png');
+    background-repeat: no-repeat;
+    background-position: 20% 30%;
+    background-color: #041e42;
+}
+
 
 #newsletter{
     display: flex;
