@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from fetch_articles import feeds  # Import the feeds dictionary
 from app.models import Article, Subscriber
 from . import db
+from sqlalchemy.exc import IntegrityError
 
 
 main = Blueprint('main', __name__)
@@ -33,19 +34,22 @@ def cancerList():
 
 @main.route('/subscribe', methods=['POST'])
 def subscribe():
-    email = request.form.get('email')  # Get email from form
+    email = request.form.get('email')
 
-    # Check if email is already subscribed
+    # Check if the email is already in the database
     existing_subscriber = Subscriber.query.filter_by(email=email).first()
 
     if existing_subscriber:
         flash('You are already subscribed!', 'warning')
     else:
-        # Add new subscriber to the database
-        new_subscriber = Subscriber(email=email)
-        db.session.add(new_subscriber)
-        db.session.commit()
-        flash('Thank you for subscribing!', 'success')
+        try:
+            # Add the new subscriber to the database
+            new_subscriber = Subscriber(email=email)
+            db.session.add(new_subscriber)
+            db.session.commit()
+            flash('Thank you for subscribing!', 'success')
+        except IntegrityError:
+            db.session.rollback()
+            flash('There was an error subscribing. Please try again later.', 'danger')
 
-    return redirect(url_for('main.index'))  # Redirect back to the homepage
-    
+    return redirect(url_for('main.index'))
