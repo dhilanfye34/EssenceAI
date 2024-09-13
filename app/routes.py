@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from fetch_articles import feeds  # Import the feeds dictionary
-from app.models import Article
+from app.models import Article, Subscriber
+from . import db
+
 
 main = Blueprint('main', __name__)
 
@@ -28,4 +30,22 @@ def about():
 def cancerList():
     cancer_types = list(feeds.keys())
     return render_template('cancerList.html', cancer_types=cancer_types)
+
+@main.route('/subscribe', methods=['POST'])
+def subscribe():
+    email = request.form.get('email')  # Get email from form
+
+    # Check if email is already subscribed
+    existing_subscriber = Subscriber.query.filter_by(email=email).first()
+
+    if existing_subscriber:
+        flash('You are already subscribed!', 'warning')
+    else:
+        # Add new subscriber to the database
+        new_subscriber = Subscriber(email=email)
+        db.session.add(new_subscriber)
+        db.session.commit()
+        flash('Thank you for subscribing!', 'success')
+
+    return redirect(url_for('main.index'))  # Redirect back to the homepage
     
