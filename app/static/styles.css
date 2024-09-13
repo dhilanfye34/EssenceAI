@@ -200,6 +200,7 @@ body {
     padding: 0; /* Remove any padding */
     overflow-x: hidden; /* Prevent horizontal scrolling */
     box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    background-position: 20% 30%;
 }
 
 
