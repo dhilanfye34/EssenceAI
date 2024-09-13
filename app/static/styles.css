@@ -184,23 +184,22 @@ body {
         right: 10px;
 }*/
 
-#essence{
+#essence {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
     height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
+    width: calc(100vw - 17px); /* Subtract scrollbar width */
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
     background-size: cover; /* Ensure the image covers the full section */
     background-position: center; /* Center the background image */
     background-color: #041e42; /* Fallback background color */
     margin: 0; /* Remove any margin */
-    margin-left: 0;
     padding: 0; /* Remove any padding */
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
 }
 
 
