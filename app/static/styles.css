@@ -191,7 +191,8 @@ body {
     align-items: center;
     background-image: url('https://sianjave.s3.us-east-2.amazonaws.com/EssenceAIBackground.webp');
     background-repeat: no-repeat;
-    /*background-position: 20% 30%;*/
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image within the container */
     background-color: #041e42;
 }
 
