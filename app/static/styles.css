@@ -197,6 +197,7 @@ body {
     background-position: center; /* Center the background image */
     background-color: #041e42; /* Fallback background color */
     margin: 0; /* Remove any margin */
+    margin-left: 0;
     padding: 0; /* Remove any padding */
     overflow-x: hidden; /* Prevent horizontal scrolling */
     box-sizing: border-box; 
