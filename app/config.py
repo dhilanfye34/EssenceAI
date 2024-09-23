@@ -8,8 +8,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = raw_db_uri.replace("postgres://", "postgresql://", 1) + "?sslmode=require"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv('SECRET_KEY', 'BabyLokesh')
-    CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://localhost:6380/0')
-    CELERY_RESULT_BACKEND = os.getenv('REDIS_URL', 'redis://localhost:6380/0')
+    CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
+    CELERY_RESULT_BACKEND = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
     # Optional setting for Celery
     CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
