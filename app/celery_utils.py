@@ -9,9 +9,8 @@ def make_celery(app):
 
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
-            with app.app_context():  # Ensuring tasks have the correct app context
+            with app.app_context():
                 return self.run(*args, **kwargs)
 
-    # Set the task base to the ContextTask
     celery.Task = ContextTask
     return celery
