@@ -320,10 +320,11 @@ footer a:hover{
 }
 
 .hero-section {
-    background-image: url('https://example.com/hero-background.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    background-image: url('https://imgur.com/a/rdWSEWH'); /* Replace with your image URL */
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    color: #fff; /* Ensure text is readable */
     text-align: center;
     padding: 100px 0;
 }
