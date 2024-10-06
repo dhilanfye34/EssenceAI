@@ -7,7 +7,7 @@ from app import celery
 from email.mime.text import MIMEText
 import smtplib
 from app.tasks import send_email_async
-
+from utils import get_cancer_description, get_cancer_facts, summarize_article_title  # Import the utility functions
 
 
 main = Blueprint('main', __name__)
@@ -21,7 +21,21 @@ def index():
 def cancer(cancer_type):
     # Fetch articles from the database for the selected cancer type
     articles = Article.query.filter_by(cancer_type=cancer_type).all()
-    return render_template('cancer.html', cancer_type=cancer_type, articles=articles)
+    
+    # Fetch a description and facts about the cancer type
+    cancer_description = get_cancer_description(cancer_type)
+    cancer_facts = get_cancer_facts(cancer_type)
+    
+    # Summarize article titles using the AI API
+    summarized_articles = []
+    for article in articles:
+        summary = summarize_article_title(article.title)
+        summarized_articles.append({
+            'title': article.title,
+            'summary': summary
+        })
+    
+    return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
 
 ##for navbar
 @main.route('/navbar')
@@ -70,3 +84,8 @@ def send_emails():
 
     flash("Emails are being sent!")
     return redirect(url_for('main.index'))
+
+@main.route('/article/<int:article_id>')
+def article_detail(article_id):
+    article = Article.query.get_or_404(article_id)
+    return render_template('article_detail.html', article=article)

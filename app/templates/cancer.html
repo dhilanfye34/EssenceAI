@@ -1,16 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}{{ cancer_type }} Articles{% endblock %}
+{% block title %}{{ cancer_type }}{% endblock %}
 
 {% block content %}
-<h1>{{ cancer_type }} Articles</h1>
-<ul>
-    {% for article in articles %}
+<div class="container mt-5">
+    <h1>{{ cancer_type }}</h1>
+    <p>{{ description }}</p>
+    
+    <h3>Facts</h3>
+    <ul>
+        {% for fact in facts %}
+        <li>{{ fact }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Articles</h3>
+    <ul>
+        {% for article in articles %}
         <li>
-            <h3>{{ article.title }}</h3>
-            <p>{{ article.summary }}</p>
-            <p><em>Published on: {{ article.published_date }}</em></p>
+            <strong>{{ article.title }}</strong>: {{ article.summary }}
+            <a href="{{ url_for('article_detail', article_id=article.id) }}">Read More</a>
         </li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
