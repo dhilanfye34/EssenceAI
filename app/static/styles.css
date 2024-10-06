@@ -318,3 +318,98 @@ footer .follow i:hover,
 footer a:hover{
     color: #088178;
 }
+
+.hero-section {
+    background-image: url('https://example.com/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.hero-section .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.features-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.features-section .feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.features-section .feature i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.articles-section {
+    padding: 60px 0;
+}
+
+.articles-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.card {
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    border-radius: 5px 5px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+}
