@@ -340,7 +340,7 @@ footer a:hover{
 
 .hero-section .btn {
     background-color: var(--primary-color); /* Use a primary color for visibility */
-    color: #fff; /* White text for contrast */
+    color: #372fce; /* White text for contrast */
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
