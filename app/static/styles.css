@@ -339,16 +339,18 @@ footer a:hover{
 }
 
 .hero-section .btn {
-    background-color: var(--primary-color);
-    color: #fff;
+    background-color: var(--primary-color); /* Use a primary color for visibility */
+    color: #fff; /* White text for contrast */
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .hero-section .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Change color on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 .features-section {
