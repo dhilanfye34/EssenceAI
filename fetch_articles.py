@@ -84,7 +84,7 @@ def summarize_article(content):
                     f"Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension: {content}"
                 )}
             ],
-            max_tokens=250,
+            max_tokens=500,
             n=1,
             stop=None,
             temperature=0.7,
