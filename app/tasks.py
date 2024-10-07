@@ -2,8 +2,8 @@ from app import celery
 from email.mime.text import MIMEText
 import smtplib
 
-@celery.task
-def send_email_async(recipient_email):
+@celery.task(bind=True)
+def send_email_async(self, recipient_email):
     # Example email sending function using SMTP
     msg = MIMEText('This is the email content')
     msg['Subject'] = 'EssenceAI'
