@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app.config import Config
-from app.celery_utils import make_celery
+from .celery_utils import make_celery
 
 db = SQLAlchemy()
 celery = None  # Placeholder for the Celery instance
@@ -11,8 +11,6 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-
-    
 
     with app.app_context():
         db.create_all()
