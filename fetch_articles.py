@@ -1,7 +1,7 @@
 import os
 import feedparser
 import openai
-from app import app, db
+from app import db
 from datetime import datetime
 from app.models import Article
 
@@ -34,43 +34,42 @@ feeds = {
 }
 
 def fetch_articles():
-    with app.app_context():
-        for cancer_type, feed in feeds.items():
-            print(f"Fetching from feed: {feed}")
-            parsed_feed = feedparser.parse(feed)
-            if parsed_feed.entries:
-                # Fetch only the first article for testing
-                entry = parsed_feed.entries[0]
-                try:
-                    # Check if the article already exists in the database
-                    existing_article = Article.query.filter_by(title=entry.title, published_date=datetime(*entry.published_parsed[:6])).first()
-                    
-                    if existing_article is None:
-                        print(f"Fetched article: {entry.title}")
-                        summary = summarize_article(entry.description)
-                        print(f"Summary: {summary}")
+    for cancer_type, feed in feeds.items():
+        print(f"Fetching from feed: {feed}")
+        parsed_feed = feedparser.parse(feed)
+        if parsed_feed.entries:
+            # Fetch only the first article for testing
+            entry = parsed_feed.entries[0]
+            try:
+                # Check if the article already exists in the database
+                existing_article = Article.query.filter_by(title=entry.title, published_date=datetime(*entry.published_parsed[:6])).first()
+                
+                if existing_article is None:
+                    print(f"Fetched article: {entry.title}")
+                    summary = summarize_article(entry.description)
+                    print(f"Summary: {summary}")
 
-                        # Add article to the database
-                        article = Article(
-                            title=entry.title,
-                            content=entry.description,
-                            summary=summary,
-                            published_date=datetime(*entry.published_parsed[:6]),
-                            cancer_type=cancer_type
-                        )
-                        db.session.add(article)
-                    else:
-                        print(f"Article already exists in the database: {entry.title}")
+                    # Add article to the database
+                    article = Article(
+                        title=entry.title,
+                        content=entry.description,
+                        summary=summary,
+                        published_date=datetime(*entry.published_parsed[:6]),
+                        cancer_type=cancer_type
+                    )
+                    db.session.add(article)
+                else:
+                    print(f"Article already exists in the database: {entry.title}")
 
-                except Exception as e:
-                    print(f"Error processing article: {e}")
-            else:
-                print("No entries found in the feed.")
-        try:
-            db.session.commit()
-            print("Articles fetched and stored successfully.")
-        except Exception as e:
-            print(f"Error committing to DB: {e}")
+            except Exception as e:
+                print(f"Error processing article: {e}")
+        else:
+            print("No entries found in the feed.")
+    try:
+        db.session.commit()
+        print("Articles fetched and stored successfully.")
+    except Exception as e:
+        print(f"Error committing to DB: {e}")
 
 
 def summarize_article(content):
