@@ -1,9 +1,11 @@
 import os
 import feedparser
 import openai
-from app import app, db
 from datetime import datetime
+from app import db, create_app
 from app.models import Article
+
+app = create_app()  # Create the app instance
 
 # Set your OpenAI API key
 openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
@@ -34,7 +36,7 @@ feeds = {
 }
 
 def fetch_articles():
-    with app.app_context():  # Ensure the function runs within the application context
+    with app.app_context():
         for cancer_type, feed in feeds.items():
             print(f"Fetching from feed: {feed}")
             parsed_feed = feedparser.parse(feed)
