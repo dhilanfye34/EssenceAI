@@ -85,7 +85,7 @@ def send_emails():
     flash("Emails are being sent!")
     return redirect(url_for('main.index'))
 
-@main.route('/article/<int:article_id>')
-def article_detail(article_id):
-    article = Article.query.get_or_404(article_id)
-    return render_template('article_detail.html', article=article)
+#@main.route('/article/<int:article_id>')
+#def article_detail(article_id):
+ #   article = Article.query.get_or_404(article_id)
+ #   return render_template('article_detail.html', article=article)
