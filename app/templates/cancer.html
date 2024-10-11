@@ -4,26 +4,5 @@
 
 {% block content %}
 <p>sexy</p>
-{#
-<div class="container mt-5">
-    <h1>{{ cancer_type }}</h1>
-    <p>{{ description }}</p>
-    
-    <h3>Facts</h3>
-    <ul>
-        {% for fact in facts %}
-        <li>{{ fact }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h3>Articles</h3>
-    <ul>
-        {% for article in articles %}
-        <li>
-            <strong>{{ article.title }}</strong>: {{ article.summary }}
-            <a href="{{ url_for('article_detail', article_id=article.id) }}">Read More</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div> #}
+
 {% endblock %}
