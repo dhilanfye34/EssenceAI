@@ -21,7 +21,8 @@ def index():
 def cancer(cancer_type):
     # Fetch articles from the database for the selected cancer type
     articles = Article.query.filter_by(cancer_type=cancer_type).all()
-    
+    return render_template('cancer.html', cancer_type=cancer_type, articles=articles)
+"""""
     # Fetch a description and facts about the cancer type
     cancer_description = get_cancer_description(cancer_type)
     cancer_facts = get_cancer_facts(cancer_type)
@@ -36,7 +37,7 @@ def cancer(cancer_type):
         })
     
     return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
-
+"""
 ##for navbar
 @main.route('/navbar')
 def navbar():
