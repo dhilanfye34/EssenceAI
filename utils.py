@@ -1,7 +1,7 @@
 import openai
 import os
 import logging
-"""
+
 # Set your OpenAI API key from environment variables
 openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
 
@@ -45,4 +45,4 @@ def summarize_article_title(title):
         logging.error(f"Error summarizing article title: {e}")
         return "Summary not available"
 
-        """
+        
