@@ -18,10 +18,8 @@
     <h2>Related Articles</h2>
     <ul>
         {% for article in articles %}
-        <li>
-            <a href="{{ url_for('main.article_detail', article_id=article.id) }}">
-                {{ article.title }}
-            </a> 
+        <li>      
+                {{ article.title }} 
         </li>
         {% endfor %}
     </ul>
