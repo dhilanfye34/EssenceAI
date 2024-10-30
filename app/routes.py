@@ -24,7 +24,7 @@ def cancer(cancer_type):
     
     # Fetch a description and facts about the cancer type
     cancer_description = get_cancer_description(cancer_type)
-    #cancer_facts = get_cancer_facts(cancer_type)
+    cancer_facts = get_cancer_facts(cancer_type)
     
     # Summarize article titles using the AI API
     #summarized_articles = []
