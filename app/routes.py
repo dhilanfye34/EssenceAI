@@ -29,10 +29,10 @@ def cancer(cancer_type):
     # Summarize article titles using the AI API
     summarized_articles = []
     for article in articles:
-        summary = summarize_article_title(article.title)
+        #summary = summarize_article_title(article.title)
         summarized_articles.append({
-            'title': article.title,
-            'summary': summary
+            'title': article.title
+            #'summary': summary
         })
     
     return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
