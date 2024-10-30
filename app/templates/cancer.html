@@ -3,7 +3,27 @@
 {% block title %}{{ cancer_type }}{% endblock %}
 
 {% block content %}
-<p>{{ cancer_type }}</p>
-<p>{{description}}</p>
-<p>{{facts}}</p>
+<div class="cancer-info">
+    <h1>{{ cancer_type }}</h1>
+    <h2>Description</h2>
+    <p>{{ description }}</p>
+
+    <h2>Facts</h2>
+    <ul>
+        {% for fact in facts %}
+        <li>{{ fact }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Related Articles</h2>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <a href="{{ url_for('main.article_detail', article_id=article.id) }}">
+                {{ article.title }}
+            </a> - {{ article.summary }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

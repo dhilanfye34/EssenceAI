@@ -35,7 +35,7 @@ def cancer(cancer_type):
             'summary': summary
         })
     
-    return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts)
+    return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
 
 ##for navbar
 @main.route('/navbar')
