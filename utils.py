@@ -130,7 +130,7 @@ def summarize_article_title(title):
             messages=[
                 {"role": "user", "content": f"Summarize the following article title briefly: {title}"}
             ],
-            max_tokens=50,
+            max_tokens=250,
             n=1,
             stop=None,
             temperature=0.7,
@@ -140,6 +140,27 @@ def summarize_article_title(title):
         return summary
     except Exception as e:
         logging.error(f"Error summarizing article title: {e}")
-        return "Summary not available"
+        return "Summary not available"     
+    
 
-        
+def summarize_article(content):
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": (
+                    f"Summarize the following article in a detailed and lengthy manner, "
+                    f"but ensure it is easily understandable for someone without a medical background. "
+                    f"Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension: {content}"
+                )}
+            ],
+            max_tokens=500,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        return response.choices[0].message['content'].strip()
+    except Exception as e:
+        print(f"Error summarizing article: {e}")
+        return "Summary not available"
