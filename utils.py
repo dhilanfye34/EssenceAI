@@ -124,25 +124,27 @@ def get_cancer_facts(cancer_type):
 
 def summarize_article_title(title):
     try:
-        logging.info(f"Summarizing title: {title}")
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "user", "content": f"Summarize the following article title briefly: {title}"}
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": (
+                    f"Summarize the following article title briefly and clearly: {title}"
+                )}
             ],
             max_tokens=250,
             n=1,
             stop=None,
             temperature=0.7,
         )
-        summary = response.choices[0].message['content'].strip()
+        summary = response.choices[0].message['title'].strip()
         logging.info(f"Title summary: {summary}")
         return summary
     except Exception as e:
         logging.error(f"Error summarizing article title: {e}")
-        return "Summary not available"     
+        return "Summary not available"
     
-
+"""
 def summarize_article(content):
     try:
         response = openai.ChatCompletion.create(
@@ -164,3 +166,4 @@ def summarize_article(content):
     except Exception as e:
         print(f"Error summarizing article: {e}")
         return "Summary not available"
+"""
