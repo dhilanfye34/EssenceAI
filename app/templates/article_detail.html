@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}{{ as}}{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-<p>im so sexy</p>
+<div class="article-detail">
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+</div>
 {% endblock %}
