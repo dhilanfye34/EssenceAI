@@ -18,6 +18,31 @@ def index():
     return render_template('index.html')
 
 @main.route('/cancer/<cancer_type>')
+def cancer(cancer_type):
+    # Fetch articles from the database for the selected cancer type
+    articles = Article.query.filter_by(cancer_type=cancer_type).all()  # Synchronous database call
+    
+    # Fetch a description and facts about the cancer type
+    cancer_description = get_cancer_description(cancer_type)
+    cancer_facts = get_cancer_facts(cancer_type)
+    
+    # Summarize articles in an asynchronous helper function
+    summarized_articles = asyncio.run(summarize_articles_async(articles))
+    
+    return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
+
+async def summarize_articles_async(articles):
+    summarized_articles = []
+    for article in articles:
+        # Asynchronously summarize each article title
+        summary = await summarize_article_title(article.title)
+        summarized_articles.append({
+            'title': article.title,
+            'summary': summary
+        })
+    return summarized_articles
+"""
+@main.route('/cancer/<cancer_type>')
 async def cancer(cancer_type):
     # Fetch articles from the database for the selected cancer type
     articles = Article.query.filter_by(cancer_type=cancer_type).all()
@@ -37,7 +62,7 @@ async def cancer(cancer_type):
         })
     
     return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
-
+"""
 ##for navbar
 @main.route('/navbar')
 def navbar():

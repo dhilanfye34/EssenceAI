@@ -24,4 +24,27 @@
         {% endfor %}
     </ul>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fetch articles asynchronously after page loads
+        fetch(`/api/fetch_articles/{{ cancer_type | urlencode }}`)
+            .then(response => response.json())
+            .then(data => {
+                // Clear existing placeholder content
+                const articlesList = document.getElementById("articles-list");
+                articlesList.innerHTML = '';
+    
+                // Populate articles dynamically
+                data.forEach(article => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `<strong>${article.title}</strong>: ${article.summary}`;
+                    articlesList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching articles:", error);
+                document.getElementById("articles-list").innerHTML = '<li>Failed to load articles.</li>';
+            });
+    });
+    </script>
 {% endblock %}
