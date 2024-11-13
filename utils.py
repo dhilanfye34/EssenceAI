@@ -139,7 +139,7 @@ def summarize_article_title(title):
             stop=None,
             temperature=0.7,
         )
-        #summary = response.choices[0].message['content'].strip()
+        summary = response.choices[0]['message']['content'].strip()
         
         return "OMGGGGG"
 
