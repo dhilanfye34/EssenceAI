@@ -141,7 +141,7 @@ def summarize_article_title(title):
         )
         summary = response.choices[0]['message']['content'].strip()
         
-        return "OMGGGGG"
+        return summary
 
     except Exception as e:
         print(f"Error summarizing article titl")
