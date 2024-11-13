@@ -29,7 +29,11 @@ async def cancer(cancer_type):
     
     # Summarize article titles asynchronously
     summarized_articles = []
+    i = 0
     for article in articles:
+        if i == 20:
+            break
+        i += 1
         summary = await summarize_article_title(article.title)  # Use await here for the async function
         print(f"{summary}")
         summarized_articles.append({
