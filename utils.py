@@ -146,9 +146,17 @@ async def summarize_article_title(title):
         async with aiohttp.ClientSession() as session:
             async with session.post(url, headers=headers, json=data) as response:
                 response_data = await response.json()
-                summary = response_data["choices"][0]["message"]["content"].strip()
-                logging.info(f"Title summary: {summary}")
-                return summary
+                logging.info(f"API Response: {response_data}")  # Log the full response for debugging
+
+                # Check if 'choices' is in the response data
+                if 'choices' in response_data:
+                    summary = response_data["choices"][0]["message"]["content"].strip()
+                    logging.info(f"Title summary: {summary}")
+                    return summary
+                else:
+                    # Log and handle cases where 'choices' is missing
+                    logging.error(f"'choices' not found in response: {response_data}")
+                    return "Summary not available"
     except Exception as e:
         logging.error(f"Error summarizing article title: {e}")
         return "Summary not available"
