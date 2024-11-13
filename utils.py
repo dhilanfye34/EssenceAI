@@ -1,8 +1,10 @@
 import openai
-import os
+import aiohttp
+import asyncio
 import logging
-import time
+import os
 
+API_KEY = os.getenv("OPENAI_API_KEY") 
 # Set your OpenAI API key from environment variables
 openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
 
@@ -123,28 +125,33 @@ def get_cancer_facts(cancer_type):
     }
     return facts.get(cancer_type, [])
 
-def summarize_article_title(title):
-    for attempt in range(3):  # Try up to 3 times
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": (
-                        f"Summarize the following article title briefly and clearly: {title}"
-                    )}
-                ],
-                max_tokens=50,
-                n=1,
-                stop=None,
-                temperature=0.7,
-            )
-            summary = response.choices[0]['message']['content'].strip()
-            return summary
-        except Exception as e:
-            print(f"Attempt {attempt+1} failed: {e}")
-            time.sleep(2)  # Wait 2 seconds before retrying
-    return "Summary not available after retries."
+async def summarize_article_title(title):
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": f"Summarize the following article title briefly and clearly: {title}"}
+        ],
+        "max_tokens": 50,
+        "n": 1,
+        "temperature": 0.7,
+    }
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, headers=headers, json=data) as response:
+                response_data = await response.json()
+                summary = response_data["choices"][0]["message"]["content"].strip()
+                logging.info(f"Title summary: {summary}")
+                return summary
+    except Exception as e:
+        logging.error(f"Error summarizing article title: {e}")
+        return "Summary not available"
     
 """
 def summarize_article(content):

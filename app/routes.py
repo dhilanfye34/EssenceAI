@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 import smtplib
 from app.tasks import send_email_async
 from utils import get_cancer_description, get_cancer_facts, summarize_article_title  # Import the utility functions
-
+import asyncio
 
 main = Blueprint('main', __name__)
 
@@ -18,7 +18,7 @@ def index():
     return render_template('index.html')
 
 @main.route('/cancer/<cancer_type>')
-def cancer(cancer_type):
+async def cancer(cancer_type):
     # Fetch articles from the database for the selected cancer type
     articles = Article.query.filter_by(cancer_type=cancer_type).all()
     
@@ -26,14 +26,14 @@ def cancer(cancer_type):
     cancer_description = get_cancer_description(cancer_type)
     cancer_facts = get_cancer_facts(cancer_type)
     
-    # Summarize article titles using the AI API
+    # Summarize article titles asynchronously
     summarized_articles = []
     for article in articles:
-        summary = summarize_article_title(article.title)
+        summary = await summarize_article_title(article.title)  # Use await here for the async function
         print(f"{summary}")
         summarized_articles.append({
-            'title': article.title
-            #'summary': summary
+            'title': article.title,
+            'summary': summary
         })
     
     return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
