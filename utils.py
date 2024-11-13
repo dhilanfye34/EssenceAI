@@ -125,6 +125,7 @@ def get_cancer_facts(cancer_type):
 def summarize_article_title(title):
     try:
         print(f"Dhilan sucks")
+        """
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -140,7 +141,8 @@ def summarize_article_title(title):
         )
         summary = response.choices[0].message['content'].strip()
         
-        return summary
+        return summary"""
+        return "yey Summary"
     except Exception as e:
         print(f"Error summarizing article titl")
         return "Summary not available"
