@@ -81,7 +81,8 @@ def summarize_article(content):
                 {"role": "user", "content": (
                     f"Summarize the following article in a detailed and lengthy manner, "
                     f"but ensure it is easily understandable for someone without a medical background. "
-                    f"Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension: {content}"
+                    f"Simplify and explain all key ideas, medical terminology, and concepts to enhance comprehension. "
+                    f"Make it really long and detailed though and explain every single terminology that we enounter: {content}"
                 )}
             ],
             max_tokens=500,
