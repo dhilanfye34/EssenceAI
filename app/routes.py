@@ -30,6 +30,7 @@ def cancer(cancer_type):
     summarized_articles = []
     for article in articles:
         summary = summarize_article_title(article.title)
+        print(f"{summary}")
         summarized_articles.append({
             'title': article.title
             #'summary': summary
