@@ -4,7 +4,7 @@ import asyncio
 import logging
 import os
 
-API_KEY = os.getenv("OPENAI_API_KEY") 
+API_KEY = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm' 
 # Set your OpenAI API key from environment variables
 openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
 
