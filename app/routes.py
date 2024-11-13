@@ -37,6 +37,7 @@ async def cancer(cancer_type):
         summary = await summarize_article_title(article.title)  # Use await here for the async function
         print(f"{summary}")
         summarized_articles.append({
+            'id': article.id,
             'title': article.title,
             'summary': summary
         })
