@@ -38,7 +38,7 @@ async def cancer(cancer_type):
         print(f"{summary}")
         summarized_articles.append({
             'title': article.title,
-            #'summary': summary
+            'summary': summary
         })
     
     return render_template('cancer.html', cancer_type=cancer_type, description=cancer_description, facts=cancer_facts, articles=summarized_articles)
