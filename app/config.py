@@ -7,6 +7,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Celery configuration - Forcefully use Redis
-    CELERY_BROKER_URL = 'redis://:p6b70e6c03e323706f5f42ada9ff93b0e8aeb1d933ae458cd587504e00fb71951@ec2-44-219-154-188.compute-1.amazonaws.com:14219'
+    CELERY_BROKER_URL = os.environ.get('CLOUDAMQP_URL', 'amqp://guest:guest@localhost:5672//')
     CELERY_RESULT_BACKEND = 'redis://:p6b70e6c03e323706f5f42ada9ff93b0e8aeb1d933ae458cd587504e00fb71951@ec2-44-219-154-188.compute-1.amazonaws.com:14219'
     
