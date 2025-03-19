@@ -6,7 +6,7 @@ from datetime import datetime
 from app.models import Article
 
 # Set your OpenAI API key
-openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Cancer types and their corresponding RSS feeds
 feeds = {

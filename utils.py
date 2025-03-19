@@ -4,9 +4,8 @@ import asyncio
 import logging
 import os
 
-API_KEY = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm' 
-# Set your OpenAI API key from environment variables
-openai.api_key = 'sk-proj-rQsYupZksCtjPA1DGXrrT3BlbkFJMzwUpwrDLnJhXrJ7FcQm'
+API_KEY = os.getenv("OPENAI_API_KEY")  # This should fetch the latest key
+openai.api_key = API_KEY  # Ensure OpenAI uses this key
 
 def get_cancer_description(cancer_type):
     # Descriptions for each cancer type
